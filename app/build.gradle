@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    useLibrary 'org.apache.http.legacy'
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId "cn.wittyneko.blog"
+    }
+
+    sourceSets {
+        //添加一个源码文件夹
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    //添加签名文件
+    signingConfigs {
+        release {
+            storeFile file('../sample.jks')
+            storePassword "samp1e"
+            keyAlias "sample"
+            keyPassword "samp1e"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true // 是否混淆
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false // 是否混淆
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+
+        Set<String> list = sourceSets.main.res.srcDirs
+        for (int i = 0; i < list.size(); i++) {
+            String path = list.getAt(i)
+            createDrawableDir(path)
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.dependencies['appcompat-v7']
+    compile rootProject.ext.dependencies['design']
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
+
+// 创建drawable文件夹
+def createDrawableDir(String path = "src/main/res") {
+    println(path)
+    File createDrawableDir
+    createDrawableDir = file("${path}/drawable")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-nodpi")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-mdpi")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-hdpi")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-xhdpi")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-xxhdpi")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-xxxhdpi")
+    createDrawableDir.mkdirs()
+}
