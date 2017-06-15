@@ -1,4 +1,4 @@
-package cn.wittyneko.blog;
+package cn.wittyneko.blog.view.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,6 +31,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.wittyneko.blog.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

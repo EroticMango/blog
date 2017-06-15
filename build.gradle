@@ -20,6 +20,7 @@ allprojects {
     repositories {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
         jcenter()
+        maven { url getLocalMaven()}
         flatDir {
             dirs 'libs'
         }
@@ -28,4 +29,12 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+def getLocalMaven() {
+    String home = System.properties['user.home']
+    String dir = rootProject.ext.maven.local
+    String path = "file://$home/$dir"
+    System.out.println("localMaven: $path")
+    return path
 }

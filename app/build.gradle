@@ -45,9 +45,18 @@ android {
     }
     productFlavors {
 
-        Set<String> list = sourceSets.main.res.srcDirs
-        for (int i = 0; i < list.size(); i++) {
-            String path = list.getAt(i)
+        File f;
+        Set<String> javaDirs = sourceSets.main.java.srcDirs
+        //创建源码文件夹
+        for (int i = 0; i < javaDirs.size(); i++) {
+            f = file("${javaDirs.getAt(i)}")
+            f.mkdirs()
+        }
+
+        Set<String> resDirs = sourceSets.main.res.srcDirs
+        //创建Drawable文件夹
+        for (int i = 0; i < resDirs.size(); i++) {
+            String path = resDirs.getAt(i)
             createDrawableDir(path)
         }
     }
