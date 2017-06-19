@@ -1,10 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from : "config.gradle"
 
 buildscript {
+    apply from : "dependencies.gradle"
     ext.kotlin_version = '1.1.2-4'
     repositories {
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url rootProject.ext.maven.aliyunMaven}
         jcenter()
     }
     dependencies {
@@ -18,23 +18,20 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        flatDir { dirs 'libs' }
+        maven { url rootProject.ext.maven.sdkAndroidMaven }
+        maven { url rootProject.ext.maven.sdkGoogleMaven }
+        maven { url rootProject.ext.maven.sdkMaven }
+        maven { url rootProject.ext.maven.localMaven}
+        maven { url rootProject.ext.maven.localMavenSnapshots}
+        maven { url rootProject.ext.maven.aliyunMaven}
         jcenter()
-        maven { url getLocalMaven()}
-        flatDir {
-            dirs 'libs'
-        }
+        //println("maven: ${mavenLocal().url}")
+        //println("jcenter: ${jcenter().url}")
+        //println("mavenCentral: ${mavenCentral().url}")
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-def getLocalMaven() {
-    String home = System.properties['user.home']
-    String dir = rootProject.ext.maven.local
-    String path = "file://$home/$dir"
-    System.out.println("localMaven: $path")
-    return path
 }

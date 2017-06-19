@@ -29,6 +29,7 @@ android {
             keyPassword "samp1e"
         }
     }
+
     buildTypes {
         release {
             minifyEnabled true // 是否混淆
@@ -42,6 +43,7 @@ android {
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
     productFlavors {
 
@@ -69,6 +71,8 @@ dependencies {
     })
     compile rootProject.ext.dependencies['appcompat-v7']
     compile rootProject.ext.dependencies['design']
+    compile rootProject.ext.dependencies['anko']
+    compile rootProject.ext.dependencies['anko-design']
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
