@@ -6,17 +6,15 @@ import android.support.annotation.AttrRes
 import android.support.annotation.RequiresApi
 import android.support.annotation.StyleRes
 import android.util.AttributeSet
-import android.view.Gravity
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
+import cn.wittyneko.blog.view.layout.LoginLayout
 import org.jetbrains.anko.*
 
 /**
  * Created by wittyneko on 17-6-18.
  */
 
-class Login : LinearLayout {
+class KPreview : LinearLayout {
     constructor(context: Context) : this(context, attrs = null) {}
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0) {}
@@ -32,7 +30,7 @@ class Login : LinearLayout {
 
     init {
 
-        val loginView = LoginView(context)
+        val loginView = LoginLayout(context)
         addView(loginView.root, matchParent, wrapContent)
     }
 

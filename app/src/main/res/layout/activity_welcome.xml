@@ -6,8 +6,4 @@
     android:layout_height="match_parent"
     tools:context="cn.wittyneko.blog.view.activity.WelcomeActivity">
 
-    <cn.wittyneko.blog.view.widgets.Login
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></cn.wittyneko.blog.view.widgets.Login>
-
 </LinearLayout>

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -84,6 +85,8 @@ def createDrawableDir(String path = "src/main/res") {
     println(path)
     File createDrawableDir
     createDrawableDir = file("${path}/drawable")
+    createDrawableDir.mkdirs()
+    createDrawableDir = file("${path}/drawable-v21")
     createDrawableDir.mkdirs()
     createDrawableDir = file("${path}/drawable-nodpi")
     createDrawableDir.mkdirs()
