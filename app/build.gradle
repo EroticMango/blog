@@ -75,6 +75,13 @@ dependencies {
     compile rootProject.ext.dependencies['anko']
     compile rootProject.ext.dependencies['anko-design']
 
+    compile rootProject.ext.dependencies['rxkotlin2']
+    compile rootProject.ext.dependencies['rxandroid2']
+
+    compile rootProject.ext.dependencies['retrofit']
+    compile rootProject.ext.dependencies['retrofit-converter-gson']
+    compile rootProject.ext.dependencies['retrofit-adapter-rxjava2']
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
